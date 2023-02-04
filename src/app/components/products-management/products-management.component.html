@@ -1,0 +1,226 @@
+<div class="container">
+  <form [formGroup]="productForm" (ngSubmit)="login()">
+    <div class="mb-3">
+      <label for="exampleInputimg" class="form-label">img</label>
+      <input
+        type="text"
+        class="form-control"
+        id="exampleInputimg"
+        aria-describedby="emailHelp"
+        placeholder="Enter your Path img"
+        formControlName="img"
+      />
+      <ng-container *ngIf="getImg.touched">
+        <div
+          *ngIf="getImg.hasError('required')"
+          id="emailHelp"
+          class="form-text text-danger"
+        >
+          image required
+        </div>
+        <div
+          *ngIf="getImg.hasError('pattern')"
+          id="emailHelp"
+          class="form-text text-danger"
+        >
+          image Error must be {{ getImg.errors | json }}
+        </div>
+      </ng-container>
+    </div>
+
+
+
+
+
+
+    <div class="mb-3">
+      <label for="exampleInputEmail1" class="form-label">Name</label>
+      <input
+        type="text"
+        class="form-control"
+        id="exampleInputEmail1"
+        aria-describedby="emailHelp"
+        placeholder="Enter your Name"
+        formControlName="name"
+      />
+      <ng-container *ngIf="getName.touched">
+        <div
+          *ngIf="getName.hasError('required')"
+          id="emailHelp"
+          class="form-text text-danger"
+        >
+          Name required
+        </div>
+        <div
+          *ngIf="getName.hasError('pattern')"
+          id="emailHelp"
+          class="form-text text-danger"
+        >
+          Name Error must be {{ getName.errors | json }}
+        </div>
+      </ng-container>
+    </div>
+
+
+    <div class="mb-3">
+      <label for="exampleInputPrice" class="form-label">Price</label>
+      <input
+        type="text"
+        class="form-control"
+        id="exampleInputPrice"
+        aria-describedby="emailHelp"
+        placeholder="Enter your Price"
+        formControlName="price"
+      />
+      <ng-container *ngIf="getPrice.touched">
+        <div
+          *ngIf="getPrice.hasError('required')"
+          id="emailHelp"
+          class="form-text text-danger"
+        >
+          Price required
+        </div>
+        <div
+          *ngIf="getPrice.hasError('pattern')"
+          id="emailHelp"
+          class="form-text text-danger"
+        >
+          Price Error must be {{ getPrice.errors | json }}
+        </div>
+      </ng-container>
+    </div>
+
+    <div class="mb-3">
+      <label for="exampleInputQuantity" class="form-label">Quantity</label>
+      <input
+        type="text"
+        class="form-control"
+        id="exampleInputQuantity"
+        aria-describedby="emailHelp"
+        placeholder="Enter your Quantity"
+        formControlName="quantity"
+      />
+      <ng-container *ngIf="getQuantity.touched">
+        <div
+          *ngIf="getQuantity.hasError('required')"
+          id="emailHelp"
+          class="form-text text-danger"
+        >
+        Quantity required
+        </div>
+        <div
+          *ngIf="getQuantity.hasError('pattern')"
+          id="emailHelp"
+          class="form-text text-danger"
+        >
+        Quantity Error must be {{ getQuantity.errors | json }}
+        </div>
+      </ng-container>
+    </div>
+
+    <div class="mb-3">
+      <label for="exampleInputDesc" class="form-label">Description</label>
+      <input
+        type="text"
+        class="form-control"
+        id="exampleInputDesc"
+        aria-describedby="emailHelp"
+        placeholder="Enter your Description"
+        formControlName="desc"
+      />
+      <ng-container *ngIf="getDesc.touched">
+        <div
+          *ngIf="getDesc.hasError('required')"
+          id="emailHelp"
+          class="form-text text-danger"
+        >
+          Description required
+        </div>
+        <div
+          *ngIf="getDesc.hasError('pattern')"
+          id="emailHelp"
+          class="form-text text-danger"
+        >
+          Description Error must be {{ getDesc.errors | json }}
+        </div>
+      </ng-container>
+    </div>
+
+    <!-- <div class="mb-3">
+      <label for="exampleInputEmail" class="form-label">Email</label>
+
+      <input
+        type="Email"
+        class="form-control"
+        id="exampleInputEmail"
+        placeholder="Enter your Email"
+        formControlName="email"
+      />
+      <ng-container *ngIf="getEmail.touched">
+        <p
+          *ngIf="getEmail.hasError('email')"
+          id="emailHelp"
+          class="form-text text-danger"
+        >
+          Email Error
+        </p>
+        <p
+          *ngIf="getEmail.hasError('required')"
+          id="emailHelp"
+          class="form-text text-danger"
+        >
+          Email required
+        </p>
+      </ng-container>
+    </div>
+
+    <div class="mb-3">
+      <label for="exampleInputPassword1" class="form-label">Password</label>
+
+      <input
+        type="password"
+        class="form-control"
+        id="exampleInputPassword1"
+        placeholder="Enter your Password"
+        formControlName="password"
+      />
+      <ng-container *ngIf="getPassword.touched">
+        <p
+          *ngIf="getPassword.hasError('required')"
+          id="emailHelp"
+          class="form-text text-danger"
+        >
+          Password required
+        </p>
+        <p
+          *ngIf="getPassword.hasError('minlength')"
+          id="emailHelp"
+          class="form-text text-danger"
+        >
+          Password Error
+        </p>
+        <p
+          *ngIf="getPassword.hasError('maxlength')"
+          id="emailHelp"
+          class="form-text text-danger"
+        >
+          Password Error
+        </p>
+      </ng-container>
+    </div> -->
+<!--
+    <div class="mb-3 form-check">
+      <input type="checkbox" class="form-check-input" id="exampleCheck1" />
+      <label class="form-check-label" for="exampleCheck1">Check me out</label>
+    </div> -->
+    <p>{{ productForm.value | json }}</p>
+
+    <button
+      [ngClass]="productId ? 'btn-warning' : 'btn-success'"
+      type="submit"
+      class="btn"
+    >
+      {{ productId ? "Edite" : "Add" }}
+    </button>
+  </form>
+</div>

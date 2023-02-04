@@ -1,0 +1,13 @@
+<div class="bg-dark ">
+  <div class="container">
+
+    <div class="text-center ">
+      <button class="btn btn-success my-3" (click)="goToDash()">Add Product</button>
+    </div>
+    <div class="row g-3">
+      <!-- <h1 class="text-warning">{{productsCount}}</h1> -->
+      <!-- <app-product-item (click)="sendCounter()" (myEvent)="getNumber($event)" *ngFor="let product of products" [product]="product" class="col-sm-6 col-md-3" ></app-product-item> -->
+      <app-product-item *ngFor="let product of products" [product]="product" class="col-sm-6 col-md-3" ></app-product-item>
+    </div>
+  </div>
+</div>

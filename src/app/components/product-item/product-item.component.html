@@ -1,0 +1,35 @@
+<div class="card" style="width: 18rem;">
+<div class="overFlow">
+
+  <div class="mano position-relative ">
+
+    <img [src]="product.img" class="card-img-top " alt="...">
+    <div class="w-100 h-100 position-absolute top-0 d-flex justify-content-end align-items-start">
+
+      <button class="btn btn-primary" (click)="goToDetails()"><i class="fa-solid fa-circle-info"></i></button>
+    </div>
+  </div>
+</div>
+  <div class="card-body">
+    <h5 class="card-title text-dark">{{product.name}}</h5>
+    <h5 class="card-title text-dark">Price : {{product.price}}</h5>
+    <ng-container [ngSwitch]="product.quantity">
+      <p class="card-text text-dark" *ngSwitchCase="0">No product Available</p>
+
+      <p class="card-text text-danger" *ngSwitchCase="10"> only : {{product.quantity}}</p>
+      <p class="card-text text-success" *ngSwitchCase="20"> Quantity : {{product.quantity}}</p>
+      <p class="card-text text-success" *ngSwitchDefault > Quantity : {{product.quantity}}</p>
+      <!-- <p class="text-dark">{{counter}}</p> -->
+    </ng-container>
+    <p class="card-text text-dark">{{product.desc}}</p>
+    <!-- <button (click)="count()" [ngClass]="{'btn-danger':product.quantity == 0,'btn-success':product.quantity != 0}" class="btn btn-primary">{{product.quantity == 0  ? 'sold':'Buy Now'}}</button> -->
+    <div class="d-flex justify-content-between">
+
+      <!-- <button [ngClass]="{'btn-danger':product.quantity == 0,'btn-success':product.quantity != 0}" class="btn btn-primary">{{product.quantity == 0  ? 'sold':'Buy Now'}}</button> -->
+      <button *ngIf="product.quantity != 0" (click)="increaseCart()" [ngClass]="{'btn-danger':product.quantity == 0,'btn-success':product.quantity != 0}" class="btn btn-primary">Buy : <i class="fa-solid fa-cart-plus"></i></button>
+      <strong *ngIf="flag" class="text-success">{{numFlag}}</strong>
+      <button *ngIf="flag" (click)="decreaseCart()"  class="btn btn-danger">Undo : <i class="fa-solid fa-minus"></i></button>
+    </div>
+  </div>
+</div>
+
