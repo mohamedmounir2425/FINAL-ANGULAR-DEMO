@@ -1,3 +1,4 @@
+import { UserService } from './../../services/user.service';
 import { LoginService } from './../../services/login.service';
 import { CounterService } from './../../services/counter.service';
 import { Component } from '@angular/core';
@@ -9,10 +10,18 @@ import { Router } from '@angular/router';
   styleUrls: ['./navbar.component.scss']
 })
 export class NavbarComponent {
-  data:any;
+  data: any;
+  isLogin:boolean = false
 
-  constructor(private counter: CounterService, private router: Router) {
+  constructor(private counter: CounterService, private router: Router ,private _UserService:UserService) {
 
+    this._UserService.currentUser.subscribe((data) => {
+      if (data != null) {
+        this.isLogin = true
+      } else if(data == null) {
+        this.isLogin = false
+      }
+    })
    }
 
    logoutFlag: boolean = false;
@@ -27,7 +36,14 @@ export class NavbarComponent {
     // this.data  = this.counter.mano
   }
   goToLogin() {
+    // this._UserService.saveCurrentUser("mm@mm","king")
+    this.isLogin =false
+
     this.router.navigate(['login'])
+
+  }
+  removeCurrentUser() {
+    this._UserService.removeCurrentUser()
   }
 
 

@@ -12,6 +12,7 @@ export class CounterService {
   }
   mano: number = 0;
   private data = new BehaviorSubject(0);
+  // private data =
   data$ = this.data.asObservable();
 
   // private logoutData = new BehaviorSubject(false);
@@ -21,6 +22,7 @@ export class CounterService {
     if (this.mano >= 0) {
       this.mano += 1
       this.data.next(this.mano)
+    
     }
   }
   decrease() {
@@ -29,6 +31,16 @@ export class CounterService {
       this.data.next(this.mano)
     }
   }
-  
+
 
 }
+
+
+
+
+
+
+
+
+
+

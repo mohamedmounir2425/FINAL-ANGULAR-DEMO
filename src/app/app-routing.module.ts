@@ -1,6 +1,7 @@
 
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { AdminComponent } from './components/admin/admin.component';
 import { CartComponent } from './components/cart/cart.component';
 import { DashboardProductComponent } from './components/dashboard-product/dashboard-product.component';
 import { HomeComponent } from './components/home/home.component';
@@ -15,6 +16,7 @@ import { RegisterComponent } from './components/register/register.component';
 const routes: Routes = [
   { path: '', redirectTo: 'login', pathMatch: 'full' },
   { path: 'home', component: HomeComponent },
+  { path: 'admin', component: AdminComponent },
   { path: 'products', component: ProductsComponent },
   { path: 'cart', component: CartComponent },
   { path: 'login', component: LoginComponent },

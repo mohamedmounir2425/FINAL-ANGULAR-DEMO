@@ -1,3 +1,4 @@
+import { userData } from './../../services/userData';
 import { LoginService } from './../../services/login.service';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
@@ -11,10 +12,11 @@ import { Component, OnInit } from '@angular/core';
 })
 export class LoginComponent implements OnInit{
   id:string ;
-  constructor(private loginService:LoginService ,private activatedRoute:ActivatedRoute  ,private router:Router ){
+  constructor(private loginService:LoginService ,private activatedRoute:ActivatedRoute  ,private router:Router ,private _UserService:UserService){
     this.id = this.activatedRoute.snapshot.params['id']
 
   }
+
   registerForm!: FormGroup
   pageFlag!: boolean;
 
@@ -24,6 +26,8 @@ export class LoginComponent implements OnInit{
       'email': new FormControl(null,[Validators.email,Validators.required]),
       'password':new FormControl(null,[Validators.required,Validators.maxLength(20),Validators.minLength(3)])
     })
+
+
 
 
   }
@@ -40,24 +44,20 @@ export class LoginComponent implements OnInit{
   }
 
   flag:boolean = false
-  adminFlag:boolean = false
+  adminFlag: boolean = false
+
+
   login(registerForm: any) {
-
-
     if (registerForm.status == 'VALID') {
       // console.log(registerForm.message)
       this.loginService.addUser(registerForm.value).subscribe((response) => {
         this.loginService.getAdmin().subscribe(res => {
-          console.log(res)
-          if (res) {
-            console.log("trueeee")
-          } else {
-            console.log("falseeeeee")
-          }
-        })
 
-        console.log(response);
-        // this.router.navigate(['/home'])
+        })
+        this._UserService.saveCurrentUser(registerForm.value.email,registerForm.value.password)
+        console.log(this._UserService.currentUser)
+
+        this.router.navigate(['/home'])
         this.flag = true
       })
 
@@ -65,8 +65,9 @@ export class LoginComponent implements OnInit{
     }
   }
 
-  // goToHome() {
-  //   this.router.navigate(['home'])
-  // }
+  goToAdmin() {
+    this.router.navigate(['admin'])
+  }
+
 
 }
